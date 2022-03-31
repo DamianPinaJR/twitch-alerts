@@ -21,10 +21,12 @@
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap');
     body{
       padding:none;
       margin:0;
       overflow:hidden;
+        font-family: 'Cabin Sketch', cursive;
     }
     .mainScreen{
       background: rgba(0,0,0,0);
@@ -32,16 +34,131 @@
       border:20px solid white;
       box-shadow: 0px 0px 30px 28px inset rgb(0,0,0);
     }
+    .mainCont {
+      display: flex;
+      position: absolute;
+      background: rgba(0, 0, 0, .9);
+      top: -100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .8);
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    #text {
+      display: inline-block;
+      vertical-align: middle;
+      color: yellow;
+      text-shadow: 2px 2px white;
+      letter-spacing: 2px;
+      font-size: 35px;
+    }
+
+    #cursor {
+      display: inline-block;
+      vertical-align: middle;
+      width: 2px;
+      height: 25px;
+      background-color: white;
+      animation: blink 0.75s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      from,
+      to {
+        background-color: transparent;
+      }
+
+      50% {
+        background-color: white;
+      }
+    }
     .chatScreen{
       background: rgba(255,255,255,1);
       height:10vh;
     }
   </style>
+  <script src="jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
   <!-- your content here... -->
   <div class="mainScreen"></div>
   <div class="chatScreen"></div>
+  <script>
+    $(document).ready(function() {
+
+  let intervalID = setTimeout(slideType, 6000);
+
+  function slideType() {
+    $('body').append('<div class="mainCont"><img class="logo"></img><div id="text"></div><div id="cursor"></div></div>');
+    setTimeout(function() {
+      $('.mainCont').animate({
+        top: '10vh'
+      }, 1000, function() {
+        let _CONTENT = [
+          "Welcome Everyone!!",
+          "KingPineapple_"
+        ];
+        let _PART = 0;
+        let _PART_INDEX = 0;
+        let _INTERVAL_VAL;
+        let _ELEMENT = document.querySelector("#text");
+        let _CURSOR = document.querySelector("#cursor");
+        _INTERVAL_VAL = setInterval(Type, 200);
+
+        function Type() {
+          var text = _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+          _ELEMENT.innerHTML = text;
+          _PART_INDEX++;
+          if (text === _CONTENT[_PART]) {
+            clearInterval(_INTERVAL_VAL);
+            if (_PART === 1) {
+              setTimeout(function() {
+                $('.mainCont').animate({
+                  top: '-100%'
+                }, 1000, function() {
+                  $('.mainCont').remove();
+                });
+              }, 5000);
+
+            } else {
+              setTimeout(function() {
+                _INTERVAL_VAL = setInterval(Delete, 50);
+              }, 5000);
+            }
+          }
+        }
+
+        function Delete() {
+          var text = _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+          _ELEMENT.innerHTML = text;
+          _PART_INDEX--;
+          if (text === '') {
+            clearInterval(_INTERVAL_VAL);
+            _PART++;
+            _PART_INDEX = 0;
+            setTimeout(function() {
+              _INTERVAL_VAL = setInterval(Type, 200);
+            }, 500);
+          }
+        }
+      });
+    }, 1000);
+  }
+});
+
+  </script>
 </body>
 </html>
