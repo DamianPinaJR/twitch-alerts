@@ -102,7 +102,7 @@
   <script>
     $(document).ready(function() {
 
-  let intervalID = setInterval(slideType, 300000);
+  let intervalID = setInterval(slideType, 60000);
 
   function slideType() {
     $('body').append('<div class="mainCont"><img class="logo"></img><div id="text"></div><div id="cursor"></div></div>');
@@ -112,6 +112,7 @@
       }, 1000, function() {
         let _CONTENT = [
           "Welcome Everyone!!",
+          "Hope you are having an amazing day!!",
           "KingPineapple_"
         ];
         let _PART = 0;
