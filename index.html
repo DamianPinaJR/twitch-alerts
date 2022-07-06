@@ -32,7 +32,7 @@
     .mainScreen{
       background: linear-gradient(0deg, #000, #272727);
       margin:1em;
-      min-height:96vh;
+      min-height:97vh;
       min-width:90vw;
     }
     .mainCont {
@@ -127,7 +127,7 @@
   <script>
     $(document).ready(function() {
 
-  let intervalID = setInterval(slideType, 900000);
+  let intervalID = setInterval(slideType, 60000);
 
   function slideType() {
     $('body').append('<div class="mainCont"><img class="logo"></img><div id="text"></div><div id="cursor"></div></div>');
