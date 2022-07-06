@@ -29,12 +29,6 @@
       overflow:hidden;
       font-family: 'Cabin Sketch', cursive;
     }
-    .mainScreen{
-      background: radial-gradient(ellipse at center, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%);
-      margin:1em;
-      min-height:97vh;
-      min-width:90vw;
-    }
     .mainCont {
       display: flex;
       position: absolute;
@@ -88,36 +82,6 @@
         background-color: white;
       }
     }
-    .mainScreen:before, .mainScreen:after {
-	content: '';
-	position: absolute;
-	left: -2px;
-	top: -2px;
-	background: linear-gradient(45deg, #30D5C8, 
-		#ffff00, #ffffff,#ffff00, #30D5C8, #30D5C8, 
-		#ffff00, #ffffff,#ffff00, #30D5C8);
-	background-size: 400%;
-	width: calc(100% + 4px);
-	height: calc(100% + 4px);
-	z-index: -1;
-	animation: steam 20s linear infinite;
-}
-
-@keyframes steam {
-	0% {
-		background-position: 0 0;
-	}
-	50% {
-		background-position: 400% 0;
-	}
-	100% {
-		background-position: 0 0;
-	}
-}
-
-.mainScreen:after {
-	filter: blur(50px);
-}
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
